@@ -5,10 +5,10 @@ public final class TriggerGate {
     private long busyUntil;
     private String reason = "";
     public synchronized boolean tryStart(boolean enabled, boolean bound,
-            boolean adapterKnown, boolean controlReady, long now) {
+            boolean originalInstalled, boolean controlReady, long now) {
         if (!enabled) return deny("请先在配置页启用快捷触发");
         if (!bound) return deny("请先绑定鸿蒙智行小组件");
-        if (!adapterKnown) return deny("当前鸿蒙智行版本尚未适配");
+        if (!originalInstalled) return deny("请先安装鸿蒙智行");
         if (!controlReady) return deny("原版小组件中没有可用的操作按钮");
         if (lastStart >= 0 && now < lastStart) return deny("设备计时发生变化，请稍后重试");
         int remaining = remainingSeconds(now);

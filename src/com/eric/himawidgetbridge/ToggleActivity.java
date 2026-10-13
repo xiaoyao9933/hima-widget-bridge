@@ -39,7 +39,7 @@ public final class ToggleActivity extends Activity {
         if (action == null) { stop("未知快捷操作，已取消"); return; }
         session = new WidgetSession(this, () -> {});
         if (saved != null || !session.enabled(action) || !session.bound()
-                || !WidgetAdapter.supported(this) || Intent.ACTION_MAIN.equals(getIntent().getAction())
+                || !WidgetAdapter.installed(this) || Intent.ACTION_MAIN.equals(getIntent().getAction())
                 || getIntent().getBooleanExtra("configure", false)) {
             startActivity(new Intent(this, MainActivity.class)); finish(); return;
         }
@@ -91,7 +91,7 @@ public final class ToggleActivity extends Activity {
     }
     private boolean coreSafe() {
         return !isFinishing() && unlocked() && bluetooth != null && bluetooth.readyNow()
-                && session.enabled(action) && session.bound() && WidgetAdapter.supported(this);
+                && session.enabled(action) && session.bound() && WidgetAdapter.installed(this);
     }
     private void checkKey(Runnable continuation) {
         if (!available()) { stop("请保持快捷页在前台、手机解锁和蓝牙开启后重试"); return; }
@@ -163,7 +163,7 @@ public final class ToggleActivity extends Activity {
         if (key.warmRequired) { initializeOriginal(); return; }
         WidgetAdapter.Snapshot state = WidgetAdapter.inspect(session.view());
         if (!WidgetSession.GATE.tryStart(session.enabled(action), session.bound(),
-                WidgetAdapter.supported(this), state.control(action) != null, SystemClock.elapsedRealtime())) {
+                WidgetAdapter.installed(this), state.control(action) != null, SystemClock.elapsedRealtime())) {
             stop(WidgetSession.GATE.getReason()); return;
         }
         pending = true;

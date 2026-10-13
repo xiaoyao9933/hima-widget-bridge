@@ -31,14 +31,14 @@ public final class PrewarmTestActivity extends Activity {
                 text -> status.setText(text), (ready, message) -> { if (ready) warm.start(); else finishTest(false, message); });
         if (saved != null) { finishTest(false, "测试被重建，旧请求已取消"); return; }
         if (!ForegroundUsage.granted(this)) { finishTest(false, "请先在主页开启使用情况访问权限"); return; }
-        if (!safe()) { finishTest(false, "请先解锁手机、开启蓝牙并确认原版版本支持"); return; }
+        if (!safe()) { finishTest(false, "请先解锁手机、开启蓝牙并确认已安装鸿蒙智行"); return; }
         handler.postDelayed(notification::start, 350);
     }
     private boolean safe() {
         KeyguardManager keyguard = getSystemService(KeyguardManager.class);
         return !isFinishing() && (keyguard == null || !keyguard.isDeviceLocked())
                 && BluetoothPreparation.state(this) == BluetoothAdapter.STATE_ON
-                && WidgetAdapter.supported(this) && ForegroundUsage.granted(this);
+                && WidgetAdapter.installed(this) && ForegroundUsage.granted(this);
     }
     private void finishTest(boolean passed, String message) {
         if (testFinished) return;

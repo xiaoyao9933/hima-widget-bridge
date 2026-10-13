@@ -8,7 +8,7 @@ public final class TriggerGateTest {
         TriggerGate gate = new TriggerGate();
         check(!gate.tryStart(false, true, true, true, 1000), "disabled must reject");
         check(!gate.tryStart(true, false, true, true, 1000), "unbound must reject");
-        check(!gate.tryStart(true, true, false, true, 1000), "unknown adapter must reject");
+        check(!gate.tryStart(true, true, false, true, 1000), "missing original app must reject");
         check(!gate.tryStart(true, true, true, false, 1000), "missing lock must reject");
         check(gate.tryStart(true, true, true, true, 1000), "ready trigger must be accepted");
         check(!gate.tryStart(true, true, true, true, 1001), "duplicate must reject");

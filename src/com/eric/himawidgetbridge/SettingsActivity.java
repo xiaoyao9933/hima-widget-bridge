@@ -44,7 +44,7 @@ public final class SettingsActivity extends WidgetPage {
                 .setMessage("移除后将关闭车锁和后备箱快捷项，需要重新绑定才能使用。")
                 .setNegativeButton("保留", null).setPositiveButton("移除", (d,w) -> { session.delete(); loadWidget(); }).show())); body.addView(widget);
         body.addView(ui.button("诊断与测试", false, () -> startActivity(new Intent(this, DiagnosticsActivity.class))));
-        ui.space(body, 16); TextView footer = ui.label("智行快捷 0.6.1\n控制与鉴权由鸿蒙智行处理", 11, ui.muted, false);
+        ui.space(body, 16); TextView footer = ui.label("智行快捷 0.6.2\n控制与鉴权由鸿蒙智行处理", 11, ui.muted, false);
         footer.setGravity(Gravity.CENTER); body.addView(footer); loadWidget();
     }
     private Switch toggle(LinearLayout parent, String title, String subtitle, String action) {
@@ -69,7 +69,7 @@ public final class SettingsActivity extends WidgetPage {
     }
     @Override protected void update() {
         if (binding == null) return;
-        binding.setText(!WidgetAdapter.supported(this) ? "原版版本需要适配，请到诊断页查看" : !session.bound() ? "尚未绑定" : "已绑定鸿蒙智行小组件");
+        binding.setText(!WidgetAdapter.installed(this) ? "未安装鸿蒙智行，请先安装原版" : !session.bound() ? "尚未绑定" : "已绑定鸿蒙智行小组件");
         bind.setText(session.bound() ? "重新绑定小组件" : "绑定车辆小组件");
         permissions.setText("通知使用权：" + (KeyNotificationListener.granted(this) ? "已开启" : "待授权")
                 + "\n自动回切权限：" + (ForegroundUsage.granted(this) ? "已开启" : "待授权"));

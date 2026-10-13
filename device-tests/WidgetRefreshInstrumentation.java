@@ -46,7 +46,7 @@ public final class WidgetRefreshInstrumentation extends Instrumentation {
             Context context = getTargetContext();
             KeyguardManager keyguard = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
             if (keyguard == null || keyguard.isDeviceLocked()) throw new IllegalStateException("Phone locked");
-            if (!WidgetAdapter.supported(context)) throw new IllegalStateException("Original version not supported");
+            if (!WidgetAdapter.installed(context)) throw new IllegalStateException("Original app not installed");
             if (!BluetoothPreparation.permitted(context)
                     || BluetoothPreparation.state(context) != BluetoothAdapter.STATE_ON)
                 throw new IllegalStateException("Bluetooth not ready");

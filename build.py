@@ -5,6 +5,7 @@ import hashlib
 import os
 import shutil
 import subprocess
+import sys
 import zipfile
 import xml.etree.ElementTree as ET
 
@@ -69,6 +70,7 @@ def main():
     run(JAVA, "-cp", BUILD / "test-classes", "com.eric.himawidgetbridge.NewKeySessionRegressionTest")
     run(JAVA, "-cp", BUILD / "test-classes", "com.eric.himawidgetbridge.AutoWarmPolicyTest")
     run(JAVA, "-cp", BUILD / "test-classes", "com.eric.himawidgetbridge.AutoWarmRecordTest")
+    run(sys.executable, PROJECT / "tests/run_widget_compatibility.py")
     run(TOOLS / "aapt2", "compile", "--dir", PROJECT / "res", "-o", BUILD / "resources.zip")
     run(TOOLS / "aapt2", "link", "-o", BUILD / "unsigned.apk", "--manifest",
         PROJECT / "AndroidManifest.xml", "-I", ANDROID, "--java", BUILD / "generated",

@@ -23,7 +23,10 @@ final class WidgetAdapter {
             return info.versionName == null ? "未知" : info.versionName;
         } catch (Exception e) { return "未安装"; }
     }
-    static boolean supported(Context context) { return "3.0.2.320".equals(version(context)); }
+    static boolean installed(Context context) {
+        try { return context.getPackageManager().getPackageInfo(PACKAGE, 0) != null; }
+        catch (Exception e) { return false; }
+    }
 
     static Snapshot inspect(View root) {
         String[] labels = new String[SLOTS.length];

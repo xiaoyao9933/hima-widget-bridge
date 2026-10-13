@@ -52,7 +52,7 @@ abstract class WidgetPage extends Activity {
     protected WidgetAdapter.Snapshot snapshot() { return session.view() == null ? null : WidgetAdapter.inspect(session.view()); }
     protected boolean ready(String action) {
         WidgetAdapter.Snapshot state = snapshot();
-        return session.bound() && WidgetAdapter.supported(this) && state != null && state.control(action) != null;
+        return session.bound() && WidgetAdapter.installed(this) && state != null && state.control(action) != null;
     }
     protected void update() {}
     protected void toast(String text) { Toast.makeText(this, text, Toast.LENGTH_LONG).show(); }

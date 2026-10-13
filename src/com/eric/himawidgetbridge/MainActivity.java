@@ -75,7 +75,7 @@ public final class MainActivity extends WidgetPage {
         KeyNotificationListener.Snapshot key = KeyNotificationListener.current(this);
         keyStatus.setText(key.state == KeyReadinessPolicy.CONNECTED ? "数字钥匙已连接" : key.state == KeyReadinessPolicy.DISCONNECTED
                 ? "数字钥匙未连接 · 触发时会等待连接" : "数字钥匙将在触发时准备");
-        String notice = !WidgetAdapter.supported(this) ? "原版版本需要适配 · 查看设置  ›"
+        String notice = !WidgetAdapter.installed(this) ? "先安装鸿蒙智行 · 查看设置  ›"
                 : !session.bound() ? "先完成车辆小组件绑定  ›"
                 : !KeyNotificationListener.granted(this) ? "开启通知使用权，读取钥匙连接状态  ›"
                 : !ForegroundUsage.granted(this) ? "开启自动回切，完成首次连接准备  ›" : "";

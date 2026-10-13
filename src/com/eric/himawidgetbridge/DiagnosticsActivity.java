@@ -38,7 +38,7 @@ public final class DiagnosticsActivity extends WidgetPage {
         if (!bluetooth.busy()) radio.setText(BluetoothPreparation.state(this) == android.bluetooth.BluetoothAdapter.STATE_ON ? "手机蓝牙已开启" : "手机蓝牙未开启或权限待授权");
         if (!notification.busy()) key.setText(KeyNotificationListener.current(this).message);
         WidgetAdapter.Snapshot state = snapshot();
-        details.setText("助手版本：0.6.1\n原版版本：" + WidgetAdapter.version(this) + "\n小组件：" + (session.bound() ? "已绑定" : "未绑定")
+        details.setText("助手版本：0.6.2\n原版版本：" + WidgetAdapter.version(this) + "\n小组件：" + (session.bound() ? "已绑定" : "未绑定")
                 + (state == null ? "" : "\n" + state.describe()) + "\n" + BluetoothPreparation.lastSummary(this) + "\n" + NfcIoDiagnostic.summary(this));
     }
     @Override protected void onResume() { super.onResume(); if (bluetooth != null) bluetooth.onResume(); }
