@@ -1,0 +1,22 @@
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut android:shortcutId="toggle_lock" android:enabled="true"
+        android:icon="@mipmap/ic_launcher" android:shortcutShortLabel="@string/shortcut_toggle">
+        <intent android:action="android.intent.action.VIEW"
+            android:targetPackage="com.eric.himawidgetbridge"
+            android:targetClass="com.eric.himawidgetbridge.ToggleActivity" />
+    </shortcut>
+    <shortcut android:shortcutId="trunk" android:enabled="true"
+        android:icon="@mipmap/ic_launcher" android:shortcutShortLabel="@string/shortcut_trunk">
+        <intent android:action="android.intent.action.VIEW"
+            android:targetPackage="com.eric.himawidgetbridge"
+            android:targetClass="com.eric.himawidgetbridge.ToggleActivity">
+            <extra android:name="control_action" android:value="trunk" />
+        </intent>
+    </shortcut>
+    <shortcut android:shortcutId="configure_widget" android:enabled="true"
+        android:icon="@mipmap/ic_launcher" android:shortcutShortLabel="@string/shortcut_config">
+        <intent android:action="android.intent.action.VIEW"
+            android:targetPackage="com.eric.himawidgetbridge"
+            android:targetClass="com.eric.himawidgetbridge.MainActivity" />
+    </shortcut>
+</shortcuts>

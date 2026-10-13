@@ -1,0 +1,23 @@
+# Generated builds and downloaded tools
+/build/
+/dist/
+/.build-tools/
+/.android-sdk/
+__pycache__/
+*.pyc
+*.apk
+*.idsig
+.DS_Store
+
+# Signing keys and local configuration
+/.local-signing/
+*.p12
+*.jks
+*.keystore
+.env
+.env.*
+local.properties
+
+# Historical workspace notes and local exploration script
+/README.txt
+/device-tests/silent_wake_probe.py
